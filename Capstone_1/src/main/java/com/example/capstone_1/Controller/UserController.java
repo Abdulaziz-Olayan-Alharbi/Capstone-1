@@ -69,6 +69,15 @@ public class UserController {
     }
 
 
+    @PutMapping("/cancel/{userId}/{orderId}")
+    public ResponseEntity cancelOrder (@PathVariable int userId ,@PathVariable int orderId){
+        if (userService.cancelOrder(userId, orderId).equals("true")) {
+            return ResponseEntity.status(200).body(new ApiResponse("Order cancelled successfully"));
+        }
+        return ResponseEntity.status(400).body(new ApiResponse(userService.cancelOrder(userId, orderId)));
+    }
+
+
 
 
 
