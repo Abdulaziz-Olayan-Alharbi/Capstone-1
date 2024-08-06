@@ -79,7 +79,7 @@ public class UserService {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId() == userId) {
                 for (Coupon coupon : couponService.getCoupons()) {
-                    if (coupon.getId() == couponId && coupon.getMerchantId() == merchantId && coupon.getProductId() == productId) {
+                    if (coupon.getId() == couponId && coupon.getProductId() == productId) {
                         for (Product product : productService.getProducts()) {
                             if (product.getId() == productId) {
                                 if (users.get(i).getBalance() >= product.getPrice()-((product.getPrice()/100) * coupon.getPercent())) {
