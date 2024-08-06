@@ -113,7 +113,7 @@ public class UserService {
                     for (Order order : orderService.getOrders()) {
                         if (order.getId() == orderId) {
                             String status = order.getStatus();
-                            if (status.equals("Received")||status.equals("Shipping")) {
+                            if (status.equals("Received")) {
                                 order.setStatus("Cancelled");
                                 for (User user : users) {
                                     if (user.getId() == order.getUserId()) {
