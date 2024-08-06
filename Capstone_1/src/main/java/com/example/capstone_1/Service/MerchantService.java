@@ -38,6 +38,24 @@ public class MerchantService {
         return false;
     }
 
+
+    public String updateStatus(int id) {
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i).getId() == id) {
+                if (orders.get(i).getStatus().equals("Received")){
+                    orders.get(i).setStatus("Shipping");
+                    return "true";
+                }
+                if (orders.get(i).getStatus().equals("Shipping")){
+                    orders.get(i).setStatus("Shipped");
+                    return "true";
+                }
+                return "can not update status";
+            }
+        }
+        return "Order does not exist";
+    }
+
     public boolean existsById(int id) {
         return merchants.stream().anyMatch(merchant -> merchant.getId() == id);
     }
