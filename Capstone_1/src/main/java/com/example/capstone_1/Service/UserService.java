@@ -105,6 +105,33 @@ public class UserService {
         return "User not found";
     }
 
+
+    public String cancelOrder(int userId , int orderId){
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == userId) {
+                if (users.get(i).getRole().equals("Admin")) {
+                    for (Order order : orderService.getOrders()) {
+                        if (order.getId() == orderId) {
+                            String status = order.getStatus();
+                            if (status.equals("Received")||status.equals("Shipping")) {
+                                order.setStatus("Cancelled");
+                                for (User user : users) {
+                                    if (user.getId() == order.getUserId()) {
+                                        user.setBalance(user.getBalance()+order.getPrice());
+                                    }
+                                }
+                            }
+                            return "Order can not be cancelled";
+                        }
+                    }
+                    return "Order does not exist";
+                }
+                return "User is not Admin";
+            }
+        }
+        return "User not found";
+    }
+
     public boolean existsById(int id) {
         return users.stream().anyMatch(user -> user.getId() == id);
     }
