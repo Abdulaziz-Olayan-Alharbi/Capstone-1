@@ -15,6 +15,5 @@ public class Coupon {
     private double percent;
     @NotNull
     private int productId;
-    @NotNull
     private int merchantId;
 }
