@@ -52,6 +52,14 @@ public class MerchantController {
         return ResponseEntity.status(404).body(new ApiResponse("Merchant not found"));
     }
 
+    @PutMapping("/status/{id}")
+    public ResponseEntity updateOrderStatus(@PathVariable int id){
+        if (merchantService.updateStatus(id).equals("true")){
+            return ResponseEntity.status(200).body(merchantService.updateStatus(id));
+        }
+        return ResponseEntity.status(400).body(merchantService.updateStatus(id));
+    }
+
 
 
 
