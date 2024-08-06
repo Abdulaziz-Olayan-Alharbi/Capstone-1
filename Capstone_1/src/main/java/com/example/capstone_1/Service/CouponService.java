@@ -24,11 +24,10 @@ public class CouponService {
 
     public String addCoupon(Coupon coupon) {
         if (productService.existsById(coupon.getProductId())){
-            if (merchantService.existsById(coupon.getMerchantId())){
+           
                 coupons.add(coupon);
                 return "true";
-            }
-            return "Merchant does not exist";
+            
         }
         return "Product does not exist";
     }
@@ -36,11 +35,10 @@ public class CouponService {
     public String updateCoupons(int id,Coupon coupon) {
         for (int i = 0; i < coupons.size(); i++) {
             if (productService.existsById(coupon.getProductId())){
-                if (merchantService.existsById(coupon.getMerchantId())){
+               
                     coupons.set(i,coupon);
                     return "true";
-                }
-                return "Merchant does not exist";
+                
             }
             return "Product does not exist";
         }
